@@ -70,21 +70,25 @@ This repository therefore focuses on the **modeling methodology and system archi
 
 # Model Architecture
 
-The system uses a **hybrid two-stage modeling framework**.
-                Rider-Bull Matchup
-                       │
-             ┌─────────┴─────────┐
-             │                   │
-      Survival Model        Score Model
-     (Random Forest)     (Neural Network)
-             │                   │
-     P(Qualify in 8s)      Predicted Score
-             │                   │
-             └─────────┬─────────┘
-                       │
-                 Expected Value
-             EV = P(Qualify) × Score
-
+```text
+                  Rider-Bull Matchup
+                           |
+        -----------------------------------------
+        |                                       |
+        v                                       v
+  Survival Model                         Score Model
+ (Random Forest)                      (Neural Network)
+        |                                       |
+        v                                       v
+ P(Qualify in 8s)                        Predicted Score
+        \                                       /
+         \                                     /
+          ---------------+---------------------
+                         |
+                         v
+                  Expected Value
+            EV = P(Qualify) × Score
+```
 
 This architecture separates **ride survival probability** from **score estimation**, improving interpretability and predictive performance.
 
